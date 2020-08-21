@@ -1,30 +1,13 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const data = require("./data");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-const data = {
-    "Home": {
-        title: `Home`,
-        navType: "main",
-        main: `<h1 class="has-text-centered pt-6">Welcome <b>Home</b></h1>`
-    },
-    "About": {
-        title: `About Me`,
-        navType: "main",
-        main: `<p>I like</p><ul><li>Chile Relleno</li><li>Baja Fish Tacos</li><li>Fajitas</li></ul>`
-    },
-    "Error": {
-        title: "Oops",
-        navType: "none",
-        main: `<h1 class="is-danger">Issue... 404ish</h1>`
-    }
-};
 
 app.get("/", function (req, res) {
     generatePage(data["Home"], result => {
@@ -79,20 +62,18 @@ function generatePage({ title, main }, done) {
 
         let nav = "";
         for (const item in data) {
-            console.log(data[item].navType);
             if (data[item].navType !== "main") continue;
             nav += `<div class="button is-3 is-large is-rounded mx-3 is-outlined"><a href="/${item}">${item.replace("-", " ")}</a></div>`;
         }
-        console.log(templateData);
         done(templateData.toString()
             .replace(new RegExp("{{ title }}", "gm"), title)
             .replace(new RegExp("{{ nav }}", "gm"), nav)
             .replace(new RegExp("{{ main }}", "gm"), main));
-        console.log(templateData);
 
     });
 }
 
 app.listen(PORT, function () {
-    console.log(`start http://localhost:${PORT}/`);
+    if (process.env.PORT) return;
+    require('child_process').exec(`start http://localhost:${PORT}/`);
 });

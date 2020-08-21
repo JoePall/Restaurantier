@@ -11,11 +11,18 @@ app.use(express.json());
 const data = {
     "Home": {
         title: `Home`,
+        navType: "main",
         main: `<h1 class="has-text-centered pt-6">Welcome <b>Home</b></h1>`
     },
     "About": {
         title: `About Me`,
+        navType: "main",
         main: `<p>I like</p><ul><li>Chile Relleno</li><li>Baja Fish Tacos</li><li>Fajitas</li></ul>`
+    },
+    "Error": {
+        title: "Oops",
+        navType: "none",
+        main: `<h1 class="is-danger">Issue... 404ish</h1>`
     }
 };
 
@@ -33,6 +40,17 @@ app.get("/:route", function (req, res) {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(result);
         });
+    }
+    else {
+        try {
+            generatePage(data["Error"], result => {
+                res.writeHead(200, { "Content-Type": "text/html" });
+                res.end(result);
+            });
+            
+        } catch (error) {
+            res.end("Issue... 404ish");
+        }
     }
 });
 
@@ -61,6 +79,8 @@ function generatePage({ title, main }, done) {
 
         let nav = "";
         for (const item in data) {
+            console.log(data[item].navType);
+            if (data[item].navType !== "main") continue;
             nav += `<div class="button is-3 is-large is-rounded mx-3 is-outlined"><a href="/${item}">${item.replace("-", " ")}</a></div>`;
         }
         console.log(templateData);

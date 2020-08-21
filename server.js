@@ -93,5 +93,5 @@ app.post("/api/characters", function (req, res) {
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
-    require('child_process').exec(`start http://localhost:${PORT}/`);
+    console.log(`start http://localhost:${PORT}/`);
 });

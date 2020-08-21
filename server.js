@@ -1,20 +1,12 @@
-// Dependencies
-// =============================================================
-var express = require("express");
-var http = require("http");
-var path = require("path");
-
-// Sets up the Express App
-// =============================================================
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const express = require("express");
+const path = require("path");
 const fs = require("fs");
 
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const data = {
     "Home": {
@@ -24,37 +16,26 @@ const data = {
     "About": {
         title: `About Me`,
         main: `<p>I like</p><ul><li>Chile Relleno</li><li>Baja Fish Tacos</li><li>Fajitas</li></ul>`
-    },
-    "FavoriteMovies": {
-        title: `Favorite Movies`,
-        main: `<ul><li>Captain America</li><li>Chuck (TV Series)</li><li>Monk (TV Series)</li></ul>`
-    },
-    "FavoriteCSSFrameworks": {
-        title: `Favorite CSS Frameworks`,
-        main: `<ul><li>Bulma</li><li>Bootstrap</li></ul>`
-    },
+    }
 };
-// Dependencies
-// =============================================================
-var express = require("express");
-var path = require("path");
 
-var app = express();
-var PORT = 3000;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+    generatePage(data["Home"], result => {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(result);
+    });
 });
 
-app.get("/add", function (req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+app.get("/:route", function (req, res) {
+    let { route } = req.params;
+    if (route in data) {
+        generatePage(data[route], result => {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(result);
+        });
+    }
 });
 
-// Displays all characters
 app.get("/api/characters", function (req, res) {
     return res.json(characters);
 });
@@ -62,8 +43,6 @@ app.get("/api/characters", function (req, res) {
 // Displays a single character, or returns false
 app.get("/api/characters/:character", function (req, res) {
     var chosen = req.params.character;
-
-    console.log(chosen);
 
     for (var i = 0; i < characters.length; i++) {
         if (chosen === characters[i].routeName) {
@@ -74,25 +53,26 @@ app.get("/api/characters/:character", function (req, res) {
     return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function (req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
-    var newCharacter = req.body;
 
-    // Using a RegEx Pattern to remove spaces from newCharacter
-    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+function generatePage({ title, main }, done) {
+    fs.readFile(__dirname + "/template.html", "utf8", (err, templateData) => {
+        if (err)
+            throw err;
 
-    console.log(newCharacter);
+        let nav = "";
+        for (const item in data) {
+            nav += `<div class="button is-3 is-large is-rounded mx-3 is-outlined"><a href="/${item}">${item.replace("-", " ")}</a></div>`;
+        }
+        console.log(templateData);
+        done(templateData.toString()
+            .replace(new RegExp("{{ title }}", "gm"), title)
+            .replace(new RegExp("{{ nav }}", "gm"), nav)
+            .replace(new RegExp("{{ main }}", "gm"), main));
+        console.log(templateData);
 
-    characters.push(newCharacter);
+    });
+}
 
-    res.json(newCharacter);
-});
-
-// Starts the server to begin listening
-// =============================================================
 app.listen(PORT, function () {
     console.log(`start http://localhost:${PORT}/`);
 });

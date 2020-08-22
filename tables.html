@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-16">
+    <title> Hot Tables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/58430259a8.js"></script>
+    <!--<link href="https://fonts.googlesapis.com/css?family=Lobster" rel="stylesheet">-->
+    <style>
+        h1 {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Lobster', cursive;
+        }
+
+        h2 {
+            color: white;
+            text-shadow: 0 0 1em #000;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Lobster', cursive;
+        }
+
+        p {
+            color: white;
+            text-shadow: 0 0 1em #000;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Lobster', cursive;
+        }
+
+        .btn {
+            cursor: pointer;
+        }
+
+        button {
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #824315 !important;
+            color: white;
+            font-size: 25px;
+            margin-bottom: 20px;
+            font-family: 'Lobster', cursive;
+        }
+    </style>
+</head>
+<!--<body style="background-image:url(./imagesUploaded/sophia2.jpg); background-repeat: no-repeat; width:700px;"">-->
+
+<body>
+    <!-- //jumbotron -->
+    <!-- <div class="jumbotron text-center" id="jumbotron"> -->
+    <div class="container content text-center">
+        <h1> JALEO RESERVATIONS </h1>
+        <br>
+        <br>
+        <p> Open Table Booking for JALEO DC </p>
+        <br>
+        <h2> Make a Reservation Today </h2>
+    </div>
+    <!-- </div> -->
+    <div class="buttons" id="buttons">
+        <div class="container">
+            <a href="/Reserve"><button type="button" class="btn btn-secondary btn-lg">
+                    <i class="fa fa-calendar" aria-hidden="true">
+                    </i>
+                    Make A Reservation
+                </button></a>
+            <a href="/Tables"><button type="button" class="btn btn-secondary btn-lg">
+                    <i class="fa fa-cutlery" aria-hidden="true">
+                    </i>
+                    View Tables
+                </button></a>
+            <button type="button" class="btn btn-secondary btn-lg" href="/">
+                <i class="fa fa-home" aria-hidden="true">
+                </i>
+                Home
+            </button>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Jaleo</h1>
+                <hr>
+                <h2 class="text-center">Current Reservations and Waiting List</h2>
+                <br>
+                <div class="text-center">
+                    <a href="/Reserve"><button type="button"> Make Reservation</button></a>
+                    <a href="/"><button type="button">Home</button></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Current Tables in Use -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Current Reservations</h4>
+                        </div>
+                        <section class="panel-body" id="tableSection">
+                            {{ atTable }}
+                        </section>
+                    </div>
+                    <!-- Waiting List Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Waiting List</h4>
+                        </div>
+                        <section class="panel-body" id="waitlistSection">
+                            {{ waiting }}
+                        </section>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <br>
+    <!-- //Back End Links -->
+    <!-- <footer class="footer">
+    <div class="container">
+      <p>Control Panel</p>
+      <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API
+          Wait List</a></p>
+    </div>
+  </footer> -->
+    <div class="backend" id="backend">
+        <div class="container">
+            <button type="button" class="btn btn-secondary btn-sm" href="insert API Link">
+                API Link
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" href="api/wait-list-json">
+                API Wait List
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" href="insert API Link">
+                Clear Table
+            </button>
+        </div>
+    </div>
+    <!-- //Back End Links -->
+    <!-- //JavaScript JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<!-- hitwebcounter Code START -->
+<p style="opacity: .2;">
+    <a href="https://www.hitwebcounter.com" target="_blank">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=7654992&style=0003&nbdigits=5&type=page&initCount=0"
+            title="Free Stats for webpages" Alt="hitwebcounter" border="0">
+    </a>
+</p>

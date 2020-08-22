@@ -27,6 +27,7 @@ const templateData = {
                         <h4 class="panel-title">Current Reservations</h4>
                     </div>
                     <section class="panel-body" id="tableSection">
+                        {{ reser.top(5) }}
                     </section>
                 </div>
                 <!-- Waiting List Panel -->
@@ -35,6 +36,7 @@ const templateData = {
                         <h4 class="panel-title">Waiting List</h4>
                     </div>
                     <section class="panel-body" id="waitlistSection">
+                    {{ Waiting List }}
                     </section>
                 </div>
             </div>
@@ -52,8 +54,8 @@ const templateData = {
             <h2 class="text-center">Reserve now!</h2>
             <br>
             <div class="text-center">
-                <a href="nav/Tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
-                <a href="nav/"><button type="button" class="btn btn-lg btn-primary">Return Home</button></a>
+                <a href="/Tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
+                <a href="/"><button type="button" class="btn btn-lg btn-primary">Return Home</button></a>
             </div>
             </div>
         </div>
@@ -86,7 +88,7 @@ const templateData = {
                                 <label for="reserve_uniqueID">Unique ID</label>
                                 <input type="text" class="form-control" id="reserve_uniqueID" name="id">
                             </div>
-                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                            <button type="submit" formmethod="post" class="btn btn-primary submit">Submit</button>
                         </form>
                     </div>
                 </div>

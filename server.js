@@ -1,16 +1,26 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const data = require("./data");
+const templateData = require("./templateData");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const data = [
+    {
+        "ID": 03514483,
+        "Name": "",
+        "Phone": "",
+        "Email": "",
+        "Party": 0,
+    }
+]
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", function (req, res) {
-    generatePage(data["Home"], result => {
+    generatePage(templateData["Home"], result => {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end(result);
     });
@@ -19,15 +29,15 @@ app.get("/", function (req, res) {
 app.get("/:route", function (req, res) {
     let { route } = req.params;
     console.log(route);
-    if (route in data) {
-        generatePage(data[route], result => {
+    if (route in templateData) {
+        generatePage(templateData[route], result => {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(result);
         });
     }
     else {
         try {
-            generatePage(data["Error"], result => {
+            generatePage(templateData["Error"], result => {
                 res.writeHead(200, { "Content-Type": "text/html" });
                 res.end(result);
             });
@@ -38,13 +48,12 @@ app.get("/:route", function (req, res) {
     }
 });
 
-
 function generatePage({ title, main }, done) {
-    fs.readFile(__dirname + "/template.html", "utf8", (err, templateData) => {
+    fs.readFile(__dirname + "/template.html", "utf8", (err, fileData) => {
         if (err)
             throw err;
 
-        done(templateData.toString()
+        done(fileData.toString()
             .replace(new RegExp("{{ title }}", "gm"), title)
             .replace(new RegExp("{{ main }}", "gm"), main));
 
@@ -54,4 +63,8 @@ function generatePage({ title, main }, done) {
 app.listen(PORT, function () {
     if (process.env.PORT) return;
     require('child_process').exec(`start http://localhost:${PORT}/`);
+});
+
+app.get("/api/", function (req, res) {
+    return res.json();
 });

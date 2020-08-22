@@ -1,4 +1,4 @@
-const data = {
+const templateData = {
     "Home": {
         title: `Home`,
         navType: "main",
@@ -7,7 +7,39 @@ const data = {
     "Tables": {
         title: `Tables`,
         navType: "main",
-        main: `Tables Main`
+    n: `
+        <div class="container">
+        <div class="jumbotron">
+            <h1>Jaleo</h1>
+            <hr>
+            <h2 class="text-center">Current Reservations and Waiting List</h2>
+            <br>
+            <div class="text-center">
+                <a href="/Reserve"><button type="button"> Make Reservation</button></a>
+                <a href="/"><button type="button">Home</button></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Current Tables in Use -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Current Reservations</h4>
+                    </div>
+                    <section class="panel-body" id="tableSection">
+                    </section>
+                </div>
+                <!-- Waiting List Panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Waiting List</h4>
+                    </div>
+                    <section class="panel-body" id="waitlistSection">
+                    </section>
+                </div>
+            </div>
+        </div>
+`
     },
     "Reserve": {
         title: `Reserve a table`,
@@ -20,7 +52,7 @@ const data = {
             <h2 class="text-center">Reserve now!</h2>
             <br>
             <div class="text-center">
-                <a href="Hot-Restaurant-master\tables.html"><button type="button" class="btn btn-lg btn-primary">View
+                <a href="Tables"><button type="button" class="btn btn-lg btn-primary">View
                         Tables</button></a>
                 <a href="/"><button type="button" class="btn btn-lg btn-default">Return Home</button></a>
             </div>
@@ -69,4 +101,4 @@ const data = {
     }
 };
 
-module.exports = data;
+module.exports = templateData;

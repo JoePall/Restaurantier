@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const data = [
     {
-        "ID": 03514483,
+        "ID": 89494,
         "Name": "",
         "Phone": "",
         "Email": "",
@@ -29,6 +29,11 @@ app.get("/", function (req, res) {
 app.get("/:route", function (req, res) {
     let { route } = req.params;
     console.log(route);
+    if (route.startsWith("api")) {
+        console.log("starts...");
+        return handleApi(req, res);
+    }
+    console.log(route);
     if (route in templateData) {
         generatePage(templateData[route], result => {
             res.writeHead(200, { "Content-Type": "text/html" });
@@ -48,6 +53,11 @@ app.get("/:route", function (req, res) {
     }
 });
 
+app.get("/api/:value", function (req, res) {
+    let { value } = req.params;
+    if (value === "data") return res.json(data);
+});
+
 function generatePage({ title, main }, done) {
     fs.readFile(__dirname + "/template.html", "utf8", (err, fileData) => {
         if (err)
@@ -63,8 +73,4 @@ function generatePage({ title, main }, done) {
 app.listen(PORT, function () {
     if (process.env.PORT) return;
     require('child_process').exec(`start http://localhost:${PORT}/`);
-});
-
-app.get("/api/", function (req, res) {
-    return res.json();
 });

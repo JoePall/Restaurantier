@@ -32,7 +32,12 @@
       font-family: 'Lobster', cursive;
     }
 
+    .btn {
+      cursor: pointer;
+    }
+
     button {
+      cursor: pointer;
       font-weight: bold;
       background-color: #824315 !important;
       color: white;
@@ -48,12 +53,12 @@
   <!-- //jumbotron -->
   <!-- <div class="jumbotron text-center" id="jumbotron"> -->
   <div class="container content text-center">
-      <h1> JALEO RESERVATIONS </h1>
-      <br>
-      <br>
-      <p> Open Table Booking for JALEO DC </p>
-      <br>
-      <h2> Make a Reservation Today </h2>
+    <h1> JALEO RESERVATIONS </h1>
+    <br>
+    <br>
+    <p> Open Table Booking for JALEO DC </p>
+    <br>
+    <h2> Make a Reservation Today </h2>
   </div>
   <!-- </div> -->
   <div class="buttons" id="buttons">
@@ -75,10 +80,18 @@
       </button>
     </div>
   </div>
-  <!-- //jumbotron -->
-  {{ main }}
+  <main>
+    {{ main }}
+  </main>
   <br>
   <!-- //Back End Links -->
+  <!-- <footer class="footer">
+    <div class="container">
+      <p>Control Panel</p>
+      <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API
+          Wait List</a></p>
+    </div>
+  </footer> -->
   <div class="backend" id="backend">
     <div class="container">
       <button type="button" class="btn btn-secondary btn-sm" href="insert API Link">
@@ -106,3 +119,11 @@
 </body>
 
 </html>
+
+<!-- hitwebcounter Code START -->
+<p style="opacity: .2;">
+  <a href="https://www.hitwebcounter.com" target="_blank">
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7654992&style=0003&nbdigits=5&type=page&initCount=0"
+      title="Free Stats for webpages" Alt="hitwebcounter" border="0">
+  </a>
+</p>

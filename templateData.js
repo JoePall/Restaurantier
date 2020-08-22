@@ -7,7 +7,7 @@ const templateData = {
     "Tables": {
         title: `Tables`,
         navType: "main",
-    n: `
+        main: `
         <div class="container">
         <div class="jumbotron">
             <h1>Jaleo</h1>
@@ -52,9 +52,9 @@ const templateData = {
             <h2 class="text-center">Reserve now!</h2>
             <br>
             <div class="text-center">
-                <a href="Tables"><button type="button" class="btn btn-lg btn-primary">View
-                        Tables</button></a>
-                <a href="/"><button type="button" class="btn btn-lg btn-default">Return Home</button></a>
+                <a href="nav/Tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
+                <a href="nav/"><button type="button" class="btn btn-lg btn-primary">Return Home</button></a>
+            </div>
             </div>
         </div>
         <div class="row">

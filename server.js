@@ -18,6 +18,7 @@ app.get("/", function (req, res) {
 
 app.get("/:route", function (req, res) {
     let { route } = req.params;
+    console.log(route);
     if (route in data) {
         generatePage(data[route], result => {
             res.writeHead(200, { "Content-Type": "text/html" });
@@ -36,6 +37,7 @@ app.get("/:route", function (req, res) {
         }
     }
 });
+
 
 function generatePage({ title, main }, done) {
     fs.readFile(__dirname + "/template.html", "utf8", (err, templateData) => {

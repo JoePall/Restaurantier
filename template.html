@@ -30,12 +30,7 @@
       font-family: 'Lobster', cursive;
     }
 
-    .btn {
-      cursor: pointer !important;
-    }
-
     button {
-      cursor: pointer !important;
       font-weight: bold;
       background-color: #824315 !important;
       color: white;
@@ -50,25 +45,23 @@
 <body>
   <!-- //jumbotron -->
   <!-- <div class="jumbotron text-center" id="jumbotron"> -->
-  <div class="container">
-    <center>
+  <div class="container content text-center">
       <h1> JALEO RESERVATIONS </h1>
       <br>
       <br>
       <p> Open Table Booking for JALEO DC </p>
       <br>
       <h2> Make a Reservation Today </h2>
-    </center>
   </div>
   <!-- </div> -->
   <div class="buttons" id="buttons">
     <div class="container">
-      <a href="/reserve"><button type="button" class="btn btn-secondary btn-lg">
+      <a href="/Reserve"><button type="button" class="btn btn-secondary btn-lg">
           <i class="fa fa-calendar" aria-hidden="true">
           </i>
           Make A Reservation
         </button></a>
-      <a href="/tables"><button type="button" class="btn btn-secondary btn-lg">
+      <a href="/Tables"><button type="button" class="btn btn-secondary btn-lg">
           <i class="fa fa-cutlery" aria-hidden="true">
           </i>
           View Tables
@@ -81,6 +74,7 @@
     </div>
   </div>
   <!-- //jumbotron -->
+  {{ main }}
   <br>
   <!-- //Back End Links -->
   <div class="backend" id="backend">
@@ -88,7 +82,7 @@
       <button type="button" class="btn btn-secondary btn-sm" href="insert API Link">
         API Link
       </button>
-      <button type="button" class="btn btn-secondary btn-sm" href="insert API Link">
+      <button type="button" class="btn btn-secondary btn-sm" href="api/wait-list-json">
         API Wait List
       </button>
       <button type="button" class="btn btn-secondary btn-sm" href="insert API Link">
@@ -98,9 +92,15 @@
   </div>
   <!-- //Back End Links -->
   <!-- //JavaScript JQuery -->
-  <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+    integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
